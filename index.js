@@ -85,7 +85,7 @@ function shownew_Alarm(new_Alarm){
 }
 
 //audio to ring alarm
-const audio = new Audio("./media/alarm-sound.wav");
+const audio = new Audio("./Sleigh-bells-transition-sound.mp3");
 
 //Adding loop to continue alarm
 audio.loop = true;
