@@ -94,7 +94,7 @@ audio.loop = true;
 function ringing(time){
     audio.play();
     audio.play();
-    alert(`Hey! it is ${time}`);
+    //alert(`Hey! it is ${time}`);
 }
 
 // Function for stop the alarm
