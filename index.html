@@ -1,35 +1,259 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alarm Clock</title>
+    <meta name="theme-color" content="#090D1B">
+
+    <meta name="description"
+          content="A modern responsive digital alarm clock with customizable alarms.">
+
+    <title>Alarm Clock | Digital Time & Alarm Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Alarm Clock</h1>
-        </div>
-        <div id="current-time"></div>
-        <h1>Set Alarm (24-Hour Clock)</h1>
-        <form class="user-input">
-            <input type="number" id="hour" max="23" min="00" placeholder="HH" />
-            <input type="number" id="min" max="59" min="00" placeholder="MM" />
-            <input type="number" id="sec" max="59" min="00" placeholder="SS" />
-            <br>
-            <br>
-            <button type="submit">Set</button>
-            <button type="reset" onclick="clearAlarm()">Stop</button>
-        </form>
-        </div>
-     <div class="list">
-        <h2>Upcoming Alarms</h2>
-        <ul class="set-alarms-list">
-            <li></li>
-        </ul>
-    </div>
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
+
+    <main class="app-container">
+
+        <!-- Header -->
+        <header class="topbar">
+            <a href="#" class="brand">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="13" r="8"></circle>
+                        <path d="M12 9v4l3 2"></path>
+                        <path d="M5 3 2 6M19 3l3 3"></path>
+                    </svg>
+                </span>
+
+                <span>TIME<span class="brand-accent">FLOW</span></span>
+            </a>
+
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>YOUR PERSONAL CLOCK</span>
+            </div>
+        </header>
+
+        <!-- Hero / Current time -->
+        <section class="hero">
+            <div class="eyebrow">
+                <span class="eyebrow-line"></span>
+                YOUR TIME, YOUR MOMENT
+                <span class="eyebrow-line"></span>
+            </div>
+
+            <h1>Make every second <span>count.</span></h1>
+
+            <p class="hero-description">
+                Stay on schedule. Set your alarms and make every moment matter.
+            </p>
+
+            <div class="clock-card">
+                <div class="clock-top">
+                    <span class="clock-label">
+                        <span class="live-dot"></span>
+                        CURRENT LOCAL TIME
+                    </span>
+
+                    <span class="clock-format">24H</span>
+                </div>
+
+                <div class="digital-clock" id="current-time"
+                     role="timer" aria-label="Current local time">
+                    <span>00</span><span class="clock-colon">:</span><span>00</span><span class="clock-colon">:</span><span>00</span>
+                </div>
+
+                <div class="clock-bottom">
+                    <span id="current-date">Loading date...</span>
+
+                    <span class="timezone-label">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"></path>
+                        </svg>
+                        LOCAL TIME
+                    </span>
+                </div>
+
+                <div class="clock-glow"></div>
+            </div>
+        </section>
+
+        <!-- Main panels -->
+        <section class="dashboard">
+
+            <!-- Set alarm -->
+            <div class="panel alarm-panel">
+                <div class="panel-heading">
+                    <div class="heading-icon purple-icon">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="13" r="8"></circle>
+                            <path d="M12 9v4l3 2M5 3 2 6M19 3l3 3"></path>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <h2>Set an alarm</h2>
+                        <p>Choose your preferred time</p>
+                    </div>
+                </div>
+
+                <form id="alarm-form">
+                    <label class="field-label">ALARM TIME</label>
+
+                    <div class="time-inputs">
+                        <div class="time-field">
+                            <input type="number" id="hour"
+                                   min="0" max="23" step="1"
+                                   placeholder="00"
+                                   aria-label="Hours"
+                                   required>
+                            <span>HOURS</span>
+                        </div>
+
+                        <span class="input-separator">:</span>
+
+                        <div class="time-field">
+                            <input type="number" id="min"
+                                   min="0" max="59" step="1"
+                                   placeholder="00"
+                                   aria-label="Minutes"
+                                   required>
+                            <span>MINUTES</span>
+                        </div>
+
+                        <span class="input-separator">:</span>
+
+                        <div class="time-field">
+                            <input type="number" id="sec"
+                                   min="0" max="59" step="1"
+                                   placeholder="00"
+                                   aria-label="Seconds"
+                                   required>
+                            <span>SECONDS</span>
+                        </div>
+                    </div>
+
+                    <p class="input-hint">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 11v5M12 7h.01"></path>
+                        </svg>
+                        Use the 24-hour format (00:00:00 – 23:59:59).
+                    </p>
+
+                    <button type="submit" class="primary-button">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"></path>
+                        </svg>
+                        Set Alarm
+                    </button>
+                </form>
+
+                <div class="panel-footer">
+                    <span class="footer-indicator"></span>
+                    Your alarms stay active while this page is open.
+                </div>
+            </div>
+
+            <!-- Upcoming alarms -->
+            <div class="panel upcoming-panel">
+                <div class="panel-heading">
+                    <div class="heading-icon blue-icon">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.8">
+                            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                            <path d="M10 21h4"></path>
+                        </svg>
+                    </div>
+
+                    <div class="upcoming-title">
+                        <h2>Upcoming alarms</h2>
+                        <p>Never miss a moment</p>
+                    </div>
+
+                    <span class="alarm-count" id="alarm-count">0</span>
+                </div>
+
+                <!-- Ringing alert -->
+                <div class="ringing-alert" id="ringing-alert"
+                     role="status" aria-live="assertive" hidden>
+                    <span class="ringing-pulse"></span>
+
+                    <div class="ringing-copy">
+                        <strong>Alarm is ringing!</strong>
+                        <span id="ringing-time">00:00:00</span>
+                    </div>
+
+                    <button type="button" id="stop-ringing"
+                            class="stop-button">
+                        Stop Sound
+                    </button>
+                </div>
+
+                <ul class="alarm-list" id="alarm-list">
+                    <li class="empty-state" id="empty-state">
+                        <div class="empty-icon">
+                            <svg viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="13" r="8"></circle>
+                                <path d="M12 9v4l3 2"></path>
+                                <path d="M5 3 2 6M19 3l3 3"></path>
+                            </svg>
+                        </div>
+
+                        <h3>No alarms yet</h3>
+
+                        <p>Your upcoming alarms will appear here.</p>
+                    </li>
+                </ul>
+
+                <div class="list-footer">
+                    <span>
+                        <span class="footer-indicator"></span>
+                        <span id="active-summary">No active alarms</span>
+                    </span>
+
+                    <button type="button" class="clear-all-button"
+                            id="clear-all" disabled>
+                        Clear all
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="page-footer">
+            <p>Designed for your time. Built for your peace of mind.</p>
+            <span>TIMEFLOW <span id="footer-year"></span></span>
+        </footer>
+
+    </main>
+
+    <!-- Alarm sound: replace this with your own local MP3 if desired -->
+    <audio id="alarm-audio"
+           src="Sleigh-bells-transition-sound.mp3"
+           preload="auto"
+           loop></audio>
+
+    <script src="index.js"></script>
 </body>
-<script src="index.js"></script>
 </html>
